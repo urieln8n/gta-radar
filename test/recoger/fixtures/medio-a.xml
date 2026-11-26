@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Medio A</title>
+    <link>https://medio-a.example/</link>
+    <description>Feed de prueba</description>
+    <item>
+      <title>GTA 6: Rockstar confirma la fecha de lanzamiento</title>
+      <link>https://medio-a.example/gta-6-fecha-lanzamiento?utm_source=rss&amp;utm_medium=feed</link>
+      <pubDate>Wed, 25 Nov 2026 10:00:00 +0000</pubDate>
+      <description>TEXTO DEL ARTICULO QUE NUNCA DEBE GUARDARSE.</description>
+      <enclosure url="https://medio-a.example/img/portada.jpg" type="image/jpeg" length="1000"/>
+    </item>
+    <item>
+      <title><![CDATA[Grand Theft Auto VI tendrá el mapa más grande de la saga]]></title>
+      <link>https://medio-a.example/gta-vi-mapa</link>
+      <pubDate>Tue, 24 Nov 2026 08:30:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Filtración de GTA 6 muestra el mapa completo</title>
+      <link>https://medio-a.example/gta-6-mapa-completo</link>
+      <pubDate>Tue, 24 Nov 2026 07:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>GTA VI: nuevo leak del tráiler 3</title>
+      <link>https://medio-a.example/gta-vi-trailer-3-video</link>
+    </item>
+    <item>
+      <title>El mejor mod menu para GTA 6</title>
+      <link>https://medio-a.example/mejor-menu-gta-6</link>
+    </item>
+    <item>
+      <title>Cheats de GTA 6: lista completa</title>
+      <link>https://medio-a.example/lista-gta-6</link>
+    </item>
+    <item>
+      <title>Todos los códigos de GTA VI para PS5</title>
+      <link>https://medio-a.example/todos-gta-vi-ps5</link>
+    </item>
+    <item>
+      <title>GTA 6 crack ya disponible para PC</title>
+      <link>https://medio-a.example/gta-6-pc-disponible</link>
+    </item>
+    <item>
+      <title>GTA 6: lo que sabemos del nuevo tráiler</title>
+      <link>https://medio-a.example/gta-6-leak-trailer-nuevo</link>
+    </item>
+    <item>
+      <title>Truco para ganar dinero rápido en GTA 6</title>
+      <link>https://medio-a.example/truco-dinero-gta-6</link>
+      <pubDate>Mon, 23 Nov 2026 18:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Red Dead Redemption 3 ya es oficial</title>
+      <link>https://medio-a.example/rdr3-oficial</link>
+    </item>
+    <item>
+      <title>GTA 5 recibe una nueva actualización</title>
+      <link>https://medio-a.example/gta-5-actualizacion</link>
+    </item>
+    <item>
+      <title>GTA 6 &amp; la economía: costará 70 dólares</title>
+      <link>https://medio-a.example/gta-6-precio</link>
+    </item>
+    <item>
+      <title>GTA 6: Rockstar confirma la fecha de lanzamiento</title>
+      <link>https://medio-a.example/gta-6-fecha-lanzamiento?utm_source=twitter#comentarios</link>
+      <pubDate>Wed, 25 Nov 2026 10:05:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

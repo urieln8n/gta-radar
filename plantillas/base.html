@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{titulo}}</title>
+<meta name="description" content="{{descripcion}}">
+{{{robots}}}
+<link rel="canonical" href="{{canonica}}">
+<meta name="theme-color" content="#0b0816">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:site_name" content="{{marca}}">
+<meta property="og:title" content="{{titulo}}">
+<meta property="og:description" content="{{descripcion}}">
+<meta property="og:url" content="{{canonica}}">
+<link rel="icon" href="{{raiz}}favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="{{raiz}}estilos.css">
+<link rel="alternate" type="application/rss+xml" title="{{nombre}} · {{marca}}" href="{{raiz}}feed.xml">
+</head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+{{{aviso}}}
+<header class="cabecera">
+  <div class="envoltura cabecera__fila">
+    <a class="marca" href="{{raiz}}">
+      <span class="marca__logo" aria-hidden="true">VC</span>
+      <span>{{nombre}}<small>{{marca}}</small></span>
+    </a>
+    <nav class="cabecera__nav" aria-label="Principal">
+      <a href="{{raiz}}feed.xml">RSS</a>
+      <a href="{{sitio}}">Guía gratis</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido" class="envoltura">
+{{{contenido}}}
+</main>
+
+<footer class="pie">
+  <div class="envoltura">
+    <p class="pie__aviso">Canal de fans, no afiliado a Rockstar Games ni Take-Two.</p>
+    <p>«Grand Theft Auto» y «GTA» son marcas de sus respectivos dueños. Las frases son nuestras; cada titular y su noticia completa pertenecen al medio que la publicó.</p>
+    <p><a href="{{sitio}}">{{marca}}</a> · <a href="{{raiz}}feed.xml">RSS</a></p>
+  </div>
+</footer>
+</body>
+</html>

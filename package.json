@@ -1,0 +1,23 @@
+{
+  "name": "gta-radar",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Radar de titulares sobre GTA 6 a partir de feeds RSS permitidos.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "recoger": "node --import tsx src/recoger/noticias.ts",
+    "revisar": "node --import tsx src/revisar/revisar.ts",
+    "build": "node --import tsx src/web/build.ts",
+    "build:sitio": "node --import tsx src/despliegue/build-sitio.ts",
+    "test": "node --import tsx --test \"test/**/*.test.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.7",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}

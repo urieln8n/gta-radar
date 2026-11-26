@@ -1,0 +1,74 @@
+[
+  {
+    "id": "vandal",
+    "nombre": "Vandal",
+    "tipo": "rss",
+    "url": "https://vandal.elespanol.com/xml.cgi",
+    "aviso_legal_url": "https://vandal.elespanol.com/estaticos/copyright",
+    "permitido": false,
+    "nota": "El aviso legal (§7) exige autorización escrita previa para la reproducción total o parcial y solo admite uso personal, educativo y no comercial. No menciona titular + enlace, así que no queda claro: false hasta tener permiso escrito de Vandal. Feed en ISO-8859-1."
+  },
+  {
+    "id": "3djuegos",
+    "nombre": "3DJuegos",
+    "tipo": "rss",
+    "url": "https://www.3djuegos.com/feedburner.xml",
+    "aviso_legal_url": "https://weblogs.webedia.es/condiciones-uso.html",
+    "permitido": true,
+    "nota": "Webedia España: licencia CC BY-NC 3.0 ES. Condiciones: (1) uso no comercial; Webedia llama comercial a cualquier página con publicidad o que sirva de soporte a la venta de bienes o servicios; (2) enlace directo al artículo, sin rel=\"nofollow\". Si la web pone anuncios, esta fuente pasa a false."
+  },
+  {
+    "id": "eurogamer-es",
+    "nombre": "Eurogamer.es",
+    "tipo": "rss",
+    "url": "https://www.eurogamer.es/feed/news",
+    "aviso_legal_url": "https://www.eurogamer.es/terms-and-conditions",
+    "permitido": false,
+    "nota": "Sus términos (Gamer Network / IGN) prohíben, sin permiso previo por escrito, enlazar con ánimo de lucro y mostrar el contenido en webs de terceros. Solo admiten uso privado y no comercial."
+  },
+  {
+    "id": "xataka",
+    "nombre": "Xataka",
+    "tipo": "rss",
+    "url": "https://www.xataka.com/index.xml",
+    "aviso_legal_url": "https://weblogs.webedia.es/condiciones-uso.html",
+    "permitido": true,
+    "nota": "Webedia España, mismas condiciones que 3DJuegos: CC BY-NC 3.0 ES, sin publicidad ni venta en la página y enlace directo sin rel=\"nofollow\". El feed redirige a /feedburner.xml (sigue en xataka.com). Es un medio generalista de tecnología: depende del filtro de GTA 6."
+  },
+  {
+    "id": "meristation",
+    "nombre": "Meristation",
+    "tipo": "rss",
+    "url": "https://feeds.as.com/mrss-s/pages/as/site/as.com/section/meristation/portada/",
+    "aviso_legal_url": "https://as.com/meristation/condiciones-legales/",
+    "permitido": false,
+    "nota": "Diario AS prohíbe la reproducción total o parcial sin autorización, se reserva la minería de textos y datos (art. 67.3 RDL 24/2021) y se opone a cualquier uso por IA. as.com bloquea los accesos automatizados (DataDome, 403): no intentar saltarlo. El feed trae el texto completo e imágenes; nunca guardarlos. Licencias: ventacontenidos@prisamedia.com."
+  },
+  {
+    "id": "game-informer",
+    "nombre": "Game Informer",
+    "tipo": "rss",
+    "url": "https://gameinformer.com/news.xml",
+    "aviso_legal_url": "https://gameinformer.com/terms",
+    "permitido": false,
+    "nota": "Solo fuente de datos, no se muestra en el radar. Sus términos solo dan una licencia personal, no autorizan titular + enlace y prohíben el framing y el mirroring sin permiso escrito. Está en inglés: no traducir ni copiar su titular, confirmar cada dato en una fuente permitida u oficial."
+  },
+  {
+    "id": "rockstar-newswire",
+    "nombre": "Rockstar Newswire",
+    "tipo": "manual",
+    "url": "https://www.rockstargames.com/newswire",
+    "aviso_legal_url": "https://www.rockstargames.com/legal",
+    "permitido": false,
+    "nota": "No tiene RSS oficial: no hay <link rel=alternate> y /newswire/rss, /newswire.rss, /newswire/feed y /rss dan 404. La web depende de JavaScript y su robots.txt bloquea bots de IA, así que se revisa a mano, sin automatizar. Los términos de Take-Two dan licencia personal y no comercial, prohíben copiar y prohíben usar su contenido como material para IA generativa."
+  },
+  {
+    "id": "rockstar-youtube",
+    "nombre": "Rockstar Games (YouTube)",
+    "tipo": "youtube",
+    "url": "https://www.youtube.com/channel/UC6VcWc1rAoWdBCM0JxrRQ3A",
+    "aviso_legal_url": "https://www.youtube.com/t/terms",
+    "permitido": false,
+    "nota": "channelId UC6VcWc1rAoWdBCM0JxrRQ3A (@RockstarGames). El feed /feeds/videos.xml?channel_id=… responde, pero el robots.txt de YouTube lo marca Disallow y los Términos prohíben el acceso automatizado sin permiso: no sondearlo. La vía permitida es la YouTube Data API v3, cuyas políticas obligan a borrar o refrescar los metadatos guardados cada 30 días."
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "0580a1442570ac48bed42d5885ea694551a2dfb4",
+    "titular": "[EJEMPLO] Noticia de madrugada: en México todavía es 31 de octubre",
+    "medio": "Diario Ficticio",
+    "fecha": "2026-11-01T03:00:00Z",
+    "enlace": "https://example.net/gta-6/madrugada",
+    "resumen": null,
+    "estado": "aprobada",
+    "recogida": "2026-11-01T06:00:00Z"
+  },
+  {
+    "id": "25125c963ead30294cace4e05e955f23283db316",
+    "titular": "[EJEMPLO] Un análisis inventado compara el tamaño de Vice City con otras ciudades del juego",
+    "medio": "Revista Inventada",
+    "fecha": "2026-11-06T15:45:00Z",
+    "enlace": "https://example.org/gta-6/vice-city-tamano",
+    "resumen": "Frase de ejemplo: un cálculo ficticio sobre cuánto se tarda en cruzar la ciudad en coche.",
+    "estado": "aprobada",
+    "recogida": "2026-11-06T18:00:00Z"
+  },
+  {
+    "id": "b168671b2e630f7550ac49ccbacbc679f200040a",
+    "titular": "[EJEMPLO] Noticia descartada (no debe salir en la web)",
+    "medio": "Medio de Ejemplo",
+    "fecha": "2026-11-10T12:00:00Z",
+    "enlace": "https://example.com/noticias/descartada",
+    "resumen": null,
+    "estado": "descartada",
+    "recogida": "2026-11-10T12:30:00Z"
+  },
+  {
+    "id": "d383a412b67ee0de1d66ba3815be3210566adc62",
+    "titular": "[EJEMPLO] Un truco para no perder dinero en tus primeras horas, según un medio inventado",
+    "medio": "Medio de Ejemplo",
+    "fecha": "2026-11-14T20:20:00Z",
+    "enlace": "https://example.com/noticias/truco-dinero-primeras-horas",
+    "resumen": "Frase de ejemplo: un consejo ficticio para administrar el dinero al empezar la partida.",
+    "estado": "aprobada",
+    "recogida": "2026-11-15T06:00:00Z"
+  },
+  {
+    "id": "15d5aed4d1e298c72a60f7b3b38b00012097347d",
+    "titular": "[EJEMPLO] \"Comillas\", <etiquetas> & símbolos: prueba de escapado",
+    "medio": "Diario <Ficticio> & Cía",
+    "fecha": "2026-11-19T11:00:00Z",
+    "enlace": "https://example.net/prueba?a=1&b=2",
+    "resumen": "Frase de ejemplo con <b>etiquetas</b> que deben verse como texto.",
+    "estado": "aprobada",
+    "recogida": "2026-11-19T12:00:00Z"
+  },
+  {
+    "id": "10efc20a45770236833e2d5f9f6d8cecbcfb327f",
+    "titular": "[EJEMPLO] Un canal ficticio resume las novedades de la semana",
+    "medio": "Medio de Ejemplo",
+    "fecha": "2026-11-25T18:00:00Z",
+    "enlace": "https://example.com/noticias/resumen-semana",
+    "resumen": "Frase de ejemplo: las tres novedades inventadas de la semana, en un minuto.",
+    "estado": "aprobada",
+    "recogida": "2026-11-25T19:30:00Z"
+  }
+]

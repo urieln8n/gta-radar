@@ -1,0 +1,177 @@
+/*
+ * Radar GTA 6 · Vice City Diario
+ * CSS sin frameworks, primero para móvil. Misma paleta que gta.andresrendon.com
+ * (noche morada, neón rosa y cian), en versión sobria: sin animaciones ni
+ * fuentes externas; si el navegador ya tiene Archivo Black o Inter, las usa.
+ */
+
+:root {
+  color-scheme: dark;
+  --fondo: #0b0816;
+  --tarjeta: #17112b;
+  --linea: #2a2148;
+  --linea-fuerte: #3a2f66;
+  --texto: #f4f1ff;
+  --texto-suave: #d9d4ee;
+  --tenue: #b3acd1;
+  --rosa: #ff3ea5;
+  --rosa-claro: #ff79c4;
+  --cian: #21e6e0;
+  --oro: #ffcf5a;
+  --radio: 14px;
+  --fuente: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fuente-display: "Archivo Black", "Arial Black", "Helvetica Neue", Impact, system-ui, sans-serif;
+}
+
+/* Los títulos de marca usan peso 900: sin Archivo Black ni Arial Black
+   (Android, Linux) la fuente del sistema sale gruesa, y sin negrita falsa. */
+h1,
+.seccion__titulo,
+.marca__logo { font-synthesis: none; }
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font: 400 1rem/1.55 var(--fuente);
+  color: var(--texto);
+  background:
+    radial-gradient(120vw 55vh at 100% -12%, rgba(255, 62, 165, .16), transparent 60%),
+    radial-gradient(90vw 45vh at -25% 8%, rgba(33, 230, 224, .08), transparent 60%),
+    var(--fondo);
+  -webkit-font-smoothing: antialiased;
+}
+
+main { flex: 1; }
+
+a { color: var(--cian); }
+
+:focus-visible { outline: 2px solid var(--cian); outline-offset: 3px; border-radius: 4px; }
+
+.envoltura { width: min(46rem, 100% - 2rem); margin-inline: auto; }
+
+.saltar {
+  position: absolute; left: 1rem; top: -4rem; z-index: 10;
+  padding: .6rem 1rem; border-radius: 999px;
+  background: var(--rosa); color: #fff; font-weight: 700; text-decoration: none;
+}
+.saltar:focus { top: 1rem; }
+
+.aviso-ejemplo {
+  margin: 0; padding: .6rem 1rem;
+  background: var(--oro); color: #1a1300;
+  font-weight: 700; font-size: .9rem; text-align: center;
+}
+
+/* Cabecera con la línea de atardecer de Vice City */
+.cabecera { position: relative; background: rgba(11, 8, 22, .85); border-bottom: 1px solid var(--linea); }
+.cabecera::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: linear-gradient(90deg, var(--rosa), var(--oro) 50%, var(--cian));
+}
+.cabecera__fila { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.5rem; }
+
+.marca { display: flex; align-items: center; gap: .6rem; color: var(--texto); text-decoration: none; font-weight: 800; line-height: 1.15; }
+.marca small { display: block; font-weight: 600; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--tenue); }
+.marca__logo {
+  display: grid; place-items: center; flex: none;
+  width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  border: 2px solid var(--cian);
+  font: 900 .78rem/1 var(--fuente-display); color: var(--rosa);
+}
+
+.cabecera__nav { display: flex; gap: 1.1rem; font-size: .9rem; font-weight: 600; }
+.cabecera__nav a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--tenue); text-decoration: none; }
+.cabecera__nav a:hover { color: var(--texto); }
+
+/* Portada de cada página */
+.portada { padding: 2rem 0 1rem; }
+.antetitulo { margin: 0 0 .5rem; font-size: .75rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--cian); }
+.antetitulo a { display: inline-flex; align-items: center; min-height: 2.75rem; color: inherit; text-decoration: none; }
+h1 {
+  margin: 0;
+  font: 900 clamp(2.1rem, 10vw, 3.5rem)/1.02 var(--fuente-display);
+  letter-spacing: -.01em; text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+h1 .rosa { color: var(--rosa); }
+.entradilla { margin: .9rem 0 0; max-width: 36rem; font-size: 1.05rem; color: var(--tenue); }
+.actualizado { margin: .6rem 0 0; font-size: .85rem; color: var(--tenue); }
+
+/* Secciones */
+.seccion { margin: 1.25rem 0 2.5rem; }
+.seccion__titulo {
+  display: flex; align-items: center; gap: .6rem;
+  margin: 0 0 1rem;
+  font: 900 1rem/1.2 var(--fuente-display); letter-spacing: .04em; text-transform: uppercase;
+}
+.seccion__titulo::before {
+  content: ""; flex: none; width: .55rem; height: .55rem; border-radius: 50%;
+  background: var(--rosa); box-shadow: 0 0 10px var(--rosa);
+}
+
+/* Noticias */
+.noticias { list-style: none; margin: 0; padding: 0; display: grid; gap: .75rem; }
+.noticia {
+  padding: 1rem 1rem .5rem;
+  background: var(--tarjeta);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  box-shadow: inset 3px 0 0 var(--rosa);
+}
+.noticia__meta { margin: 0 0 .35rem; font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--tenue); }
+.noticia__medio { color: var(--cian); }
+.noticia__titular { margin: 0; font-size: 1.12rem; line-height: 1.3; font-weight: 800; overflow-wrap: anywhere; }
+.noticia__frase { margin: .5rem 0 0; color: var(--texto-suave); }
+.noticia__leer {
+  display: inline-flex; align-items: center; min-height: 2.75rem; margin-top: .15rem;
+  color: var(--rosa-claro); font-weight: 700; text-decoration: none;
+}
+.noticia__leer:hover { text-decoration: underline; text-underline-offset: 3px; }
+.noticia__flecha { margin-left: .3em; }
+
+.vacio { margin: 0; padding: 1.25rem; border: 1px dashed var(--linea-fuerte); border-radius: var(--radio); color: var(--tenue); }
+
+/* Archivo por mes */
+.archivo ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+.archivo li { border-bottom: 1px solid var(--linea); }
+.archivo a {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: 3rem; color: var(--texto); font-weight: 600; text-decoration: none;
+}
+.archivo a span { color: var(--tenue); font-size: .9rem; font-weight: 500; }
+.archivo a:hover { color: var(--rosa-claro); }
+
+/* Meses anterior y siguiente */
+.paginacion { display: flex; justify-content: space-between; gap: 1rem; margin: 0 0 2.5rem; font-weight: 700; }
+.paginacion a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--cian); text-decoration: none; }
+.paginacion a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Pie */
+.pie { border-top: 1px solid var(--linea); padding: 1.5rem 0 2rem; font-size: .85rem; color: var(--tenue); }
+.pie p { margin: 0 0 .5rem; }
+.pie__aviso { color: var(--texto); font-weight: 600; }
+.pie a { color: var(--tenue); }
+.pie a:hover { color: var(--texto); }
+
+@media (min-width: 48rem) {
+  .portada { padding: 3rem 0 1.25rem; }
+  .noticia { padding: 1.25rem 1.5rem .6rem; }
+  .noticia__titular { font-size: 1.25rem; }
+}
+
+@media (hover: hover) {
+  .noticia { transition: border-color .2s; }
+  .noticia:hover { border-color: var(--linea-fuerte); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

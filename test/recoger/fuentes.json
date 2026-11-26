@@ -1,0 +1,47 @@
+[
+  {
+    "id": "medio-a",
+    "nombre": "Medio A",
+    "tipo": "rss",
+    "url": "https://medio-a.example/feed.xml",
+    "aviso_legal_url": "https://medio-a.example/aviso-legal",
+    "permitido": true,
+    "nota": "Fuente de prueba (RSS 2.0)."
+  },
+  {
+    "id": "medio-b",
+    "nombre": "Medio B",
+    "tipo": "rss",
+    "url": "https://medio-b.example/atom.xml",
+    "aviso_legal_url": "https://medio-b.example/terminos",
+    "permitido": true,
+    "nota": "Fuente de prueba (Atom)."
+  },
+  {
+    "id": "medio-vetado",
+    "nombre": "Medio vetado",
+    "tipo": "rss",
+    "url": "https://medio-vetado.example/feed.xml",
+    "aviso_legal_url": "https://medio-vetado.example/aviso-legal",
+    "permitido": false,
+    "nota": "Sus términos no permiten la lectura automática: no debe descargarse nunca."
+  },
+  {
+    "id": "canal-video",
+    "nombre": "Canal de vídeo",
+    "tipo": "youtube",
+    "url": "https://canal-video.example/feed",
+    "aviso_legal_url": "https://canal-video.example/terminos",
+    "permitido": true,
+    "nota": "Tipo youtube: este recolector no lo usa."
+  },
+  {
+    "id": "manual",
+    "nombre": "Entrada manual",
+    "tipo": "manual",
+    "url": "https://manual.example/",
+    "aviso_legal_url": "https://manual.example/aviso-legal",
+    "permitido": true,
+    "nota": "Tipo manual: este recolector no lo usa."
+  }
+]

@@ -1,0 +1,100 @@
+# Recogida diaria de titulares de GTA 6 (npm run recoger) y commit de data/ si cambió.
+# Modelo: ai-market/.github/workflows/daily-collect.yml, pero sin base de datos: los datos viven en data/ del repo.
+#
+# No hace nada por sí solo hasta que se cumple TODO esto:
+#   - el workflow está en main (GitHub solo programa los workflows de la rama por defecto);
+#   - la variable del repositorio RECOGIDA_ACTIVA vale "true" (para el cron), o se lanza a mano
+#     (Actions → Recoger noticias → Run workflow).
+# Si falla, abre (o comenta) la issue "Recogida fallida". data/ en main no cambia hasta el último paso (git push).
+#
+# Las noticias nuevas entran como "pendiente" y la web no las muestra hasta aprobarlas. Como cualquier push a main,
+# este commit lo despliega Cloudflare (Worker gta-radar conectado por Git; ver docs/DESPLIEGUE.md).
+#
+# Variable del repositorio (Settings → Secrets and variables → Actions → Variables):
+#   RECOGIDA_ACTIVA   "true" activa el cron (déjala sin poner hasta que la primera ejecución manual salga bien)
+# No necesita secretos.
+name: Recoger noticias
+
+on:
+  schedule:
+    - cron: "41 4 * * *" # 04:41 UTC (22:41 en CDMX la víspera, 05:41 en Madrid en invierno); inerte sin RECOGIDA_ACTIVA
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recoger
+  cancel-in-progress: false
+
+jobs:
+  recoger:
+    if: github.event_name == 'workflow_dispatch' || vars.RECOGIDA_ACTIVA == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run recoger
+      - name: Comprobar que data/ sigue siendo JSON válido
+        run: |
+          node --input-type=commonjs -e '
+            const fs = require("fs"), path = require("path");
+            const walk = (d) => !fs.existsSync(d) ? [] : fs.readdirSync(d, { withFileTypes: true })
+              .flatMap((e) => e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
+            for (const f of walk("data").filter((f) => f.endsWith(".json"))) {
+              try { JSON.parse(fs.readFileSync(f, "utf8")); }
+              catch (e) { console.error(`::error file=${f}::JSON no válido: ${e.message}`); process.exitCode = 1; }
+            }
+          '
+      - name: Commit de data/ si cambió
+        run: |
+          set -euo pipefail
+          if [ -z "$(git status --porcelain -- data)" ]; then
+            echo "Sin cambios en data/." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- data
+          borrados="$(git diff --cached --name-only --diff-filter=D -- data)"
+          if [ -n "$borrados" ]; then
+            echo "::error::La recogida borró archivos de data/; no subo nada:"
+            echo "$borrados"
+            exit 1
+          fi
+          git diff --cached --stat -- data >> "$GITHUB_STEP_SUMMARY"
+          git commit -m "Recogida $(date -u +%F)"
+          # Si alguien hizo push mientras tanto, se rebasa una vez; si hay conflicto, falla y abre la issue.
+          git push origin "HEAD:${GITHUB_REF_NAME}" || {
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          }
+
+  notify-failure:
+    needs: recoger
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - name: Abrir o actualizar la issue de fallo
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          title="Recogida fallida"
+          body="$(date -u +%F) — la ejecución ${RUN_URL} ha fallado; data/ en main no ha cambiado. Mira el registro del paso que falló."
+          number="$(gh issue list --state open --search "\"${title}\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi

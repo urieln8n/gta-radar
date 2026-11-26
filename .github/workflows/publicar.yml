@@ -1,0 +1,74 @@
+# RESERVA, solo manual. Lo normal es que publique Cloudflare: el Worker gta-radar está conectado por Git a este
+# repo (Workers Builds) y despliega cada push a main con «npm run build:sitio» + «npx wrangler deploy».
+#
+# Usa este workflow solo si Workers Builds no funciona. Compila igual (sitio/ + radar/ → salida/, y falla si
+# sitio/ no tiene la guía con el formulario de Brevo) y despliega el mismo Worker desde GitHub Actions.
+# El siguiente push a main lo vuelve a desplegar Cloudflare, así que no se pisan.
+#
+# Actions → Publicar web (reserva) → Run workflow, indicando la URL donde comprobar el resultado:
+# https://gta.andresrendon.com cuando el dominio ya esté en el Worker; antes, su dirección *.workers.dev.
+#
+# Secretos del repositorio (Settings → Secrets and variables → Actions), solo para este workflow:
+#   CLOUDFLARE_API_TOKEN    token con el permiso "Workers Scripts: Edit" (docs/DESPLIEGUE.md)
+#   CLOUDFLARE_ACCOUNT_ID   ID de la cuenta de Cloudflare
+name: Publicar web (reserva)
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL donde comprobar la web después de publicar (https://dominio, sin ruta)"
+        required: true
+        default: "https://gta.andresrendon.com"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publicar
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Compilar sitio/ + radar/ en salida/
+        run: npm run build:sitio
+      - name: Desplegar el Worker gta-radar
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_API_TOKEN}" || { echo "::error::Falta el secreto CLOUDFLARE_API_TOKEN."; exit 1; }
+          test -n "${CLOUDFLARE_ACCOUNT_ID}" || { echo "::error::Falta el secreto CLOUDFLARE_ACCOUNT_ID."; exit 1; }
+          npx --yes wrangler@4.168.0 deploy
+      - name: Comprobar la web publicada
+        env:
+          URL_BASE: ${{ inputs.url }}
+        run: |
+          set -u
+          base="${URL_BASE%/}"
+          if [[ ! "$base" =~ ^https://[A-Za-z0-9.-]+$ ]]; then
+            echo "::error::La URL debe ser https://dominio, sin ruta."
+            exit 1
+          fi
+          for intento in 1 2 3 4 5 6; do
+            portada="$(curl -fsS "$base/" || true)"
+            feed_tipo="$(curl -fsS -o /dev/null -w '%{content_type}' "$base/radar/feed.xml" || true)"
+            if [[ "$portada" == *sibforms.com* && "$feed_tipo" == *xml* ]]; then
+              echo "Guía con formulario y /radar en línea en $base." >> "$GITHUB_STEP_SUMMARY"
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::Tras publicar, $base no muestra la guía con el formulario o falta /radar/feed.xml. Revisa y, si hace falta, vuelve a la versión anterior del Worker (docs/DESPLIEGUE.md)."
+          exit 1

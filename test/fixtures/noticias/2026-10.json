@@ -1,0 +1,32 @@
+[
+  {
+    "id": "99492e35ed4cc469c91f9c9beadb5bcb3b217d87",
+    "titular": "[EJEMPLO] Un medio inventado repasa todo lo que se ha visto del mapa de Leonida",
+    "medio": "Medio de Ejemplo",
+    "fecha": "2026-10-14T16:30:00Z",
+    "enlace": "https://example.com/noticias/mapa-leonida",
+    "resumen": "Frase de ejemplo: un repaso ficticio a las zonas del mapa que aparecen en los tráileres.",
+    "estado": "aprobada",
+    "recogida": "2026-10-14T18:02:11Z"
+  },
+  {
+    "id": "6a96b6d39ab2bc0ca4f73fd9daccb9b6a0d2c62b",
+    "titular": "[EJEMPLO] Noticia pendiente de revisión (no debe salir en la web)",
+    "medio": "Medio de Ejemplo",
+    "fecha": "2026-10-20T09:00:00Z",
+    "enlace": "https://example.com/noticias/pendiente-octubre",
+    "resumen": null,
+    "estado": "pendiente",
+    "recogida": "2026-10-20T10:15:00Z"
+  },
+  {
+    "id": "5da05b5955b42daccc034f801df0eb1804a2e267",
+    "titular": "[EJEMPLO] Una tienda inventada lista una edición especial a 99.99 dólares",
+    "medio": "Revista Inventada",
+    "fecha": "2026-10-28T23:10:00Z",
+    "enlace": "https://example.org/gta-6/edicion-especial-precio",
+    "resumen": "Frase de ejemplo: el precio ficticio de la edición especial sería de 99.99 dólares, sin confirmación oficial.",
+    "estado": "aprobada",
+    "recogida": "2026-10-29T06:00:00Z"
+  }
+]

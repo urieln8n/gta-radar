@@ -1,0 +1,10 @@
+// Worker gta-radar (Cloudflare Workers Builds, conectado por Git a urieln8n/gta-radar).
+// Solo archivos estáticos: «npm run build:sitio» genera ./salida con sitio/ (la guía) + radar/.
+// Sin código de Worker, sin rutas ni dominio todavía (ver docs/DESPLIEGUE.md).
+{
+  "name": "gta-radar",
+  "compatibility_date": "2026-11-23",
+  "assets": {
+    "directory": "./salida"
+  }
+}
