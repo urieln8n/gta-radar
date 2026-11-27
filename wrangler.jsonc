@@ -5,6 +5,7 @@
   "name": "gta-radar",
   "compatibility_date": "2026-11-23",
   "assets": {
-    "directory": "./salida"
+    "directory": "./salida",
+    "not_found_handling": "404-page"
   }
 }
